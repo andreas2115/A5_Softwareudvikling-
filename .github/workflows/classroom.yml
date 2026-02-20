@@ -1,0 +1,42 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Testing Person
+      id: testing-person
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Testing Person
+        setup-command: curl -sSL https://dot.net/v1/dotnet-install.sh | sudo bash
+          -s -- --install-dir /usr/share/dotnet --channel 7.0
+        command: dotnet run --project SortingCards
+        timeout: 10
+        max-score: 1
+    - name: Testing BinarySearch
+      id: testing-binarysearch
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Testing BinarySearch
+        setup-command: curl -sSL https://dot.net/v1/dotnet-install.sh | sudo bash
+          -s -- --install-dir /usr/share/dotnet --channel 7.0
+        command: dotnet test -l "console;verbosity=normal" BinarySearch/Tests
+        timeout: 10
+        max-score: 1
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        TESTING-PERSON_RESULTS: "${{steps.testing-person.outputs.result}}"
+        TESTING-BINARYSEARCH_RESULTS: "${{steps.testing-binarysearch.outputs.result}}"
+      with:
+        runners: testing-person,testing-binarysearch
