@@ -51,7 +51,10 @@ public static class Search {
             } else if (relation > 0) {
                 high = mid - 1;
             } else {
-                return mid;
+                if (mid == 0 || array[mid - 1].CompareTo(target) < 0){
+                    return mid;
+                }
+                high = mid - 1;
             }
         }
 

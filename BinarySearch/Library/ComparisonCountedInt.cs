@@ -1,7 +1,8 @@
 using System;
-using System.Runtime.CompilerServices;
-using Library;
-namespace CountedInt;
+//using System.Runtime.CompilerServices;
+//using Library;
+namespace Library;
+//namespace CountedInt;
 
 public class ComparisonCountedInt : IComparable {
 
@@ -24,7 +25,11 @@ public class ComparisonCountedInt : IComparable {
     public int CompareTo(object obj) {
         count ++;
         // type-cast syntax help chatGPT, obj gets typecasted into a ComparisonCountedInt. 
-        ComparisonCountedInt other = (ComparisonCountedInt)obj; 
+        if (obj == null) return 1;
+        if (obj is not ComparisonCountedInt other) {
+        throw new ArgumentException("Object is not a ComparisonCountedInt");
+        }
+        //ComparisonCountedInt other = (ComparisonCountedInt)obj; 
         return integer.CompareTo(other.integer);
     }
 

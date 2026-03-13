@@ -20,5 +20,4 @@ ChatGPT is the tool used.
 AI generated code was never copy pasted into any part or section. 
 AI has been used for code clarification and reasoning as well as syntax qestions,  
 in the same manner as how you would use/ask a TA for help. 
-ChatGPT was used to help setup the correct structure in my own test module, to be able to run tests while developing.
 All code that is not citated is self written and developted. 
