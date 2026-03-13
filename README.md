@@ -8,10 +8,8 @@ https://github.com/andreas2115/A5_Softwareudvikling-.git
 You can run the tests from the root folder:
 dotnet test BinarySearch/Tests
 
-I could not make the final test work. I am asserting on the Binary search 
-using less comparisons but, it seems to not be the case sometimes, especcially 
-for targets at the biggining of the array. 
-This makes logical sense, but it does not fit the discribtion of the task
+Fixed to code, thanks for the feedback. I have:
+I updated Binary search to always returning the first occurrence, and I update the tests to verify that exact behavior. 
 
 
 
